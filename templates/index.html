@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--HTML CODE COURTESY OF BOOTSTRAP ADMIN5 DASHBOARD TEMPLATE-->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+
+	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+   <!-- D3 -->
+   <script src="https://d3js.org/d3.v7.min.js"></script>
+
+   <!-- Leaflet CSS -->
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+   crossorigin=""/>
+ 
+   <!-- Custom CSS --> 
+   <link rel="stylesheet" href="../static/style.css">
+ 
+   <!-- Leaflet JavaScript code -->
+   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+   crossorigin=""></script>
+  
+     <!-- Plotly -->
+   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+   <!--APEX Chart-->
+   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+   <!--Reference to JSON file containing WHO data-->
+  <script src="/..data/WHO-Data.json"></script> 
+</head>
+
+<body>
+
+        <div class="main">
+         
+     
+                      <a href="#" class="list-group-item">
+                        <div class="row g-0 align-items-center">
+                          <div class="col-2">
+                      
+                    <i class="align-middle" data-feather="settings"></i>
+                  </a>
+    
+            
+               
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+
+        
+        <main class="content">
+          <div class="container-fluid p-0">
+  
+            <h1 class="h3 mb-3"><strong>Covid-19 Global Analysis Dashboard</strong></h1>
+            <p> "PLEASE NOTE: THIS DATA WAS REPORTED BY THE WORLD HEALTH ORGANIZATION AS OF AUGUST 15, 2023 AND IS NOT UPDATED IN REAL-TIME"</p>
+           
+            <select id="selDataset">
+                <option value="">Select a Country</option>
+                </select>
+            <div class="row">
+              <div class="col-xl-6 col-xxl-5 d-flex">
+                <div class="w-100">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col mt-0">
+                              <h5 class="card-title">New Cases - Last 7 Days</h5>
+                              <p>New Cases: <span id="newCases"></span> </p>
+                            </div>
+  
+                            <div class="col-auto">
+                              <div class="stat text-primary">
+                                <i class="align-middle" data-feather="truck"></i>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mb-0">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col mt-0">
+                              <h5 class="card-title">New Deaths - Last 7 Days</h5>
+                              <p>New Deaths: <span id="newDeaths"></span> </p>
+                            </div>
+  
+                            <div class="col-auto">
+                              <div class="stat text-primary">
+                                <i class="align-middle" data-feather="users"></i>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mb-0">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col mt-0">
+                              <h5 class="card-title">Total Cases</h5>
+                            </div>
+  
+                            <div class="col-auto">
+                              <div class="stat text-primary">
+                                <i class="align-middle" data-feather="dollar-sign"></i>
+                              </div>
+                            </div>
+                          </div>
+                          <p>Total Cases: <span id="totalCases"></span> </p>
+                          <div class="mb-0">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col mt-0">
+                              <h5 class="card-title">Total Deaths</h5>
+                              <p>Total Deaths: <span id="totalDeaths"></span> </p>
+                            </div>
+  
+                            <div class="col-auto">
+                              <div class="stat text-primary">
+                                <i class="align-middle" data-feather="shopping-cart"></i>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mb-0">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                    <h5 class="card-title mb-0">Top 20 Countries with Highest Covid-19 Deaths</h5>
+                    <p></p>
+                    <p> This map is a visualization that shows the top 20 countries with the highest Covid-19 Deaths</p>
+                    <p> Hover and click one of the blue markers to display Country and Total Deaths</p>
+                    <div id="map" style="height:500px;" style="width:350px;"></div>
+                 
+              </div>
+              
+                <div class="card flex-fill w-100">
+                  <div class="card-header">
+                    <div class="container-fluid p-0"></div>
+                    <h5 class="card-title mb-0">Vaccinations and Total Deaths - Top 20 Countries</h5>
+                    <p></p>
+                    <p> This double bar chart represents the top 20 countries for highest total deaths, as well as the vaccination data for each country</p>
+                    <p> Hover over each bar to display information for each country </p>
+                  </div>
+               
+                    <div id="Plot" style="height:500px;" style="width:350px;"></div>
+                  </div>
+                </div>
+              </div>
+
+              
+                </div>
+              </div>
+              
+                
+                  <div class="card-header">
+                    <div class="card flex-fill w-100"></div>
+                    <div class="container-fluid p-0"></div>
+                    <h5 class="card-title mb-0">Top 10 Highest Countries - New Cases Last 7 Days</h5>
+                    <p></p>
+                    <p> This pie chart highlights the top 10 countries with the highest rate of new cases</p>
+                    <p> Hover within the pie chart to display additional information for each country </p>
+                  </div>
+                    
+                   <div id="pieChart" style="height:300px;" style="width:200px;"></div>
+                  </div>
+                </div>
+              </div>
+        </main>
+  </body>
+
+    <!-- Our JavaScript files -->
+   <script type="text/javascript" src="../static/logic.js"></script>
+   <script type="text/javascript" src="../static/data.js"></script>
+
+  <!-- flask code to link to your styles.css file. Feel free to update to match your css file-->
+  <link rel="stylesheet" href="{{ url_for('static', filename='../static/style.css') }}">
+
+   <!-- flask code to link to your logic.js file. Feel free to copy / paste or adjust to your file names-->
+   <script src="{{ url_for('static', filename='../static/logic.js') }}"></script>
+
+   
+
+</head>
+
+
+ 
+</html>
